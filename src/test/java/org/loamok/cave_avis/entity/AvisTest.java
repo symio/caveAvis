@@ -65,7 +65,7 @@ public class AvisTest {
                 .build();
         Avis avisDB = avisRepository.save(avis);
 
-        //Vérifier que l'identifiant n'est pas nul
+        //Vérifier que l'identifiant n'est pas null
         assertThat(avisDB.getId()).isNotNull();
         assertThat(avisDB.getNote()).isEqualTo(4);
         assertThat(avisDB.getCommentaire()).isNotNull();
