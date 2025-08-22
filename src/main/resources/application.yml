@@ -1,0 +1,18 @@
+#Data Source
+spring:
+  profiles.active: secrets
+  data:
+    mongodb:
+      host: localhost
+      port: 27017
+      database: org_loamok_cave_avis
+      authentication-database: admin
+#Log
+logging:
+  level:
+    org:
+      springframework:
+        data:
+          mongodb:
+            core:
+              MongoTemplate: DEBUG

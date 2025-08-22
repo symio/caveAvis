@@ -1,0 +1,29 @@
+version: '3.9'
+
+volumes:
+  db:
+
+services:
+  db:
+    container_name: mongodb
+    image: mongo:latest
+    restart: unless-stopped
+    volumes:
+      - db:/data/db
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=${MONGODB_USER}
+      - MONGO_INITDB_ROOT_PASSWORD=${MONGODB_PASSWORD}
+      - MONGO_INITDB_DATABASE=${MONGODB_DATABASE}
+    ports:
+      - 27017:27017
+  mongo-express:
+      image: mongo-express
+      ports:
+          - ${MONGO_EXPRESS_HTTP}:8081
+      depends_on:
+          - db
+      environment:
+          - ME_CONFIG_MONGODB_ADMINUSERNAME=${MONGODB_USER}
+          - ME_CONFIG_MONGODB_ADMINPASSWORD=${MONGODB_PASSWORD}
+          - ME_CONFIG_MONGODB_SERVER=db
+      restart: unless-stopped
