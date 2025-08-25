@@ -28,4 +28,6 @@ public class Avis {
     private String commentaire;
     @Field(name = "date")
     private LocalDateTime date;
+    @Field
+    private Client client;
 }
