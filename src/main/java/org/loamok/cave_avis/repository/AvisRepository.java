@@ -7,11 +7,13 @@ import org.loamok.cave_avis.entity.Client;
 import org.loamok.cave_avis.entity.vin.Bouteille;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.repository.query.Param;
+import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
 /**
  *
  * @author symio
  */
+@RepositoryRestResource(collectionResourceRel = "avis", path = "avis")
 public interface AvisRepository extends MongoRepository<Avis, String> {
     List<Avis> findByNoteLessThan(@Param("note") int note);
     List<Avis> findByNoteGreaterThanEqual(@Param("note") int note);
