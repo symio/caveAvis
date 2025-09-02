@@ -51,11 +51,10 @@ public class BouteilleTest {
     }
     
     private void runTheTests(Bouteille b) {
-        assertThat(b.getId()).isExactlyInstanceOf(BouteilleId.class);
-        assertThat(b.getId().getIdCouleur()).isNotNull();
-        assertThat(b.getId().getIdCouleur()).isEqualTo(1);
-        assertThat(b.getId().getIdRegion()).isNotNull();
-        assertThat(b.getId().getIdRegion()).isEqualTo(5);
+        assertThat(b.getIdCouleur()).isNotNull();
+        assertThat(b.getIdCouleur()).isEqualTo(1);
+        assertThat(b.getIdRegion()).isNotNull();
+        assertThat(b.getIdRegion()).isEqualTo(5);
         assertThat(b.getNom()).isEqualTo("UBY BIO N°21");
 
         log.info(b.toString());
@@ -66,12 +65,9 @@ public class BouteilleTest {
     public void insertOneBottleTest() {
         cleanDb();
         final Bouteille bottle = Bouteille.builder()
-            .id(BouteilleId.builder()
-                .idBouteille(2298)
-                .idCouleur(1)
-                .idRegion(5)
-                .build()
-            )
+            .idBouteille(2298)
+            .idCouleur(1)
+            .idRegion(5)
             .nom("UBY BIO N°21")
             .build()
         ;
@@ -83,14 +79,12 @@ public class BouteilleTest {
     @Test
     public void insertOneBottleSecondMethodTest() {
         cleanDb();
-        final BouteilleId bid = BouteilleId.builder()
-                .idBouteille(2298)
-                .idCouleur(1)
-                .idRegion(5)
-                .build();
+        final Integer bid = 2298;
         
         final Bouteille bottle = Bouteille.builder()
-            .id(bid)
+            .idBouteille(bid)
+            .idCouleur(1)
+            .idRegion(5)
             .nom("UBY BIO N°21")
             .build()
         ;

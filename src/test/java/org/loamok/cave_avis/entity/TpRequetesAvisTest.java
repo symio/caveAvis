@@ -9,7 +9,6 @@ import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
 import org.loamok.cave_avis.entity.vin.Bouteille;
-import org.loamok.cave_avis.entity.vin.BouteilleId;
 import org.loamok.cave_avis.repository.AvisRepository;
 import org.loamok.cave_avis.repository.vin.BouteilleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,34 +37,25 @@ public class TpRequetesAvisTest {
 
         listeBouteilles.add(Bouteille
                 .builder()
-                .id(BouteilleId
-                        .builder()
-                        .idBouteille(18298)
-                        .idRegion(3)
-                        .idCouleur(1)
-                        .build())
+                .idBouteille(18298)
+                .idRegion(3)
+                .idCouleur(1)
                 .nom("Vin ENI Edition")
                 .build());
 
         listeBouteilles.add(Bouteille
                 .builder()
-                .id(BouteilleId
-                        .builder()
-                        .idBouteille(1298)
-                        .idRegion(3)
-                        .idCouleur(2)
-                        .build())
+                .idBouteille(1298)
+                .idRegion(3)
+                .idCouleur(2)
                 .nom("Vin ENI Service")
                 .build());
 
         listeBouteilles.add(Bouteille
                 .builder()
-                .id(BouteilleId
-                        .builder()
-                        .idBouteille(1999)
-                        .idRegion(2)
-                        .idCouleur(3)
-                        .build())
+                .idBouteille(1999)
+                .idRegion(2)
+                .idCouleur(3)
                 .nom("Vin ENI Ecole")
                 .build());
 
@@ -167,12 +157,9 @@ public class TpRequetesAvisTest {
     @Test
     public void a04FindByBouteilleTest() {
         Bouteille b = Bouteille.builder()
-                .id(BouteilleId
-                        .builder()
-                        .idBouteille(18298)
-                        .idRegion(3)
-                        .idCouleur(1)
-                        .build())
+                .idBouteille(18298)
+                .idRegion(3)
+                .idCouleur(1)
                 .build();
 
         final List<Avis> avis = avisR.findByBouteille(b);

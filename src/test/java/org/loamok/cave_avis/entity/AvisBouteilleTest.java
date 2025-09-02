@@ -5,11 +5,9 @@ import java.util.Optional;
 import lombok.extern.slf4j.Slf4j;
 import static org.assertj.core.api.Assertions.assertThat;
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.TestMethodOrder;
 import org.loamok.cave_avis.entity.vin.Bouteille;
-import org.loamok.cave_avis.entity.vin.BouteilleId;
 import org.loamok.cave_avis.repository.AvisRepository;
 import org.loamok.cave_avis.repository.vin.BouteilleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,11 +38,7 @@ public class AvisBouteilleTest {
     void test01_save_avis() {
         cleanDb();
         
-        final BouteilleId bid = BouteilleId.builder()
-                .idBouteille(2298)
-                .idCouleur(1)
-                .idRegion(5)
-                .build();
+        final int bid = 2298;
         
         Optional<Bouteille> bDb2 = bouteilleRepository.findById(bid);
         assertThat(bDb2).isNotNull();
@@ -83,15 +77,14 @@ public class AvisBouteilleTest {
         log.info(a.getClient().toString());
         // Bouteille
         assertThat(a.getBouteille()).isNotNull();
-        assertThat(a.getBouteille().getId()).isNotNull();
+        assertThat(a.getBouteille().getIdBouteille()).isNotNull();
         
         final Bouteille b = a.getBouteille();
         
-        assertThat(b.getId()).isExactlyInstanceOf(BouteilleId.class);
-        assertThat(b.getId().getIdCouleur()).isNotNull();
-        assertThat(b.getId().getIdCouleur()).isEqualTo(1);
-        assertThat(b.getId().getIdRegion()).isNotNull();
-        assertThat(b.getId().getIdRegion()).isEqualTo(5);
+        assertThat(b.getIdCouleur()).isNotNull();
+        assertThat(b.getIdCouleur()).isEqualTo(1);
+        assertThat(b.getIdRegion()).isNotNull();
+        assertThat(b.getIdRegion()).isEqualTo(5);
         assertThat(b.getNom()).isEqualTo("UBY BIO N°21");
 
         log.info(b.toString());
